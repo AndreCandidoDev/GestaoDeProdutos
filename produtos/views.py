@@ -8,7 +8,12 @@ from .forms import ProductForm
 
 @login_required  # decorator que protege o acesso da função por login
 def product_list(request):
-    products = Product.objects.all()  # recebe todos os elementos da tabela (model) Person
+    termo_busca = request.GET.get('pesquisa', None)
+    if termo_busca:
+        products = Product.objects.all()
+        products = products.filter(product_name=termo_busca)
+    else:
+        products = Product.objects.all()  # recebe todos os elementos da tabela (model) Person
     print(products)
     return render(request, 'products_list.html', {'products': products})
 

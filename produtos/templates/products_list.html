@@ -3,10 +3,24 @@
 {% block title %} Gestão de produtos{% endblock %}
 
 {% block main %}
+
+    <div class="row">
+        <div class="col-12">
+            <form class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label class="sr-only">Busca</label>
+                        <input type="text" class="form-control" id="pesquisa" name="pesquisa" placeholder="Digite sua busca">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+
+    <br><br>
+
     <div class="row">
         <div class="col">
             <h2> Listagem de produtos </h2>
-
             <ul class="list-group">
                 {% for product in products %}
                     <li class="list-group-item">
@@ -24,7 +38,7 @@
         </div>
         <div class="col">
             {% if user.is_authenticated %}
-                 <p>Ola {{ user.username }} <a href="{% url 'logout' %}" class="btn btn-secondary">Sair</a></p>
+                 <p>Ola {{ user.username }} <a href="{% url 'logout' %}" ><span class="badge badge-secondary">Sair</span></a></p>
             {% endif %}
         </div>
     </div>
